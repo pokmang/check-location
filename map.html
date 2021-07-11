@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>location เหตุการ์ปิดล้อมที่ กะดุนง สายบุรี</title>
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+        
+        body {
+            margin: 0px;
+            height: 100%;
+        }
+        
+        #map {
+            height: 100%;
+        }
+    </style>
+
+    <script type="text/javascript" src="https://api.longdo.com/map/?key=3188d43aacecc0d2c4c01199a07b3520"></script>
+    <script>
+        var map;
+
+        function init() {
+            map = new longdo.Map({
+
+                placeholder: document.getElementById('map'),
+
+            });
+            const circleCenter = {
+                lat: 6.648972,
+                lon: 101.554750
+            }
+            const radiusInMetre = 1000 // 2500m or 2.5km
+            const metrePerLatInDegree = window.longdo.Util.latitudeLength(circleCenter.lat)
+            const radiusInDegree = (radiusInMetre * 1.0) / metrePerLatInDegree
+            map.Overlays.add(new longdo.Circle(circleCenter, radiusInDegree, {
+                title: 'รัศมี 5 กิโลเมตร จากเหตุการณ์ปิดล้อมปะทะเจ้าหน้าที่ทหาร',
+                label: '5 km.',
+                detail: 'ไม่อนุญาตให้เข้าพื้นที่',
+                lineWidth: 1,
+                lineColor: 'rgba(255, 0, 0, 0.8)',
+                fillColor: 'rgba(255, 0, 0, 0.4)',
+                pivot: {
+                    lat: 6.648972,
+                    lon: 101.554750
+                }
+            }));
+            map.Overlays.add(new longdo.Marker(circleCenter, {
+                title: ' กะดุนง สายบุรี',
+                icon: {
+                    html: '<img class="logo-fire" src="https://icon-library.com/images/civil-war-icon/civil-war-icon-9.jpg">',
+                    offset: {
+                        x: 2,
+                        y: 5
+                    }
+                },
+                detail: 'เหตุการ์ปิดล้อมเจ้าหน้าที่ปะทะกลุ่มนักรบจีฮาด ที่  กะดุนง สายบุรี',
+            }));
+        }
+    </script>
+</head>
+
+<body onload="init();">
+    <div id="map"></div>
+</body>
+
+</html>
